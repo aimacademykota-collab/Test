@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentorship Process & Strategy | Aim Academy - Counselling</title>
+    <meta name="description" content="Discover our scientific, results-driven mentorship and JoSAA counselling process. From Class 11 foundations to dropper's intensive prep. Aim Academy Kota is the best JEE strategy guidance center.">
+    <meta name="keywords" content="JEE exam strategy kota, scientific mentorship process, JEE Advanced preparation plan, JoSAA counseling expert">
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --luxury-blue: #1d4ed8;
+            --premium-shadow: 0 20px 40px rgba(0,0,0,0.05);
+            --process-gradient: linear-gradient(135deg, #1d4ed8, #60a5fa);
+        }
+
+        body {
+            background-color: #ffffff;
+            overflow-x: hidden;
+            font-family: 'Inter', sans-serif;
+            color: #1e293b;
+        }
+
+        /* Hero System */
+        .process-hero {
+            padding: 12rem 5% 8rem;
+            text-align: center;
+            background: radial-gradient(circle at top, #f0f7ff 0%, #ffffff 80%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-canvas-bg {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.3;
+        }
+
+        /* Flow Diagram Section */
+        .flow-section {
+            padding: 4rem 5%;
+            background: white;
+            overflow: hidden;
+        }
+
+        .flow-container {
+            max-width: 1200px;
+            margin: 4rem auto;
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            z-index: 10;
+        }
+
+        .flow-line {
+            position: absolute;
+            top: 60px;
+            left: 5%;
+            width: 90%;
+            height: 2px;
+            background: #e2e8f0;
+            z-index: -1;
+        }
+
+        .flow-progress {
+            position: absolute;
+            top: 60px;
+            left: 5%;
+            width: 0%;
+            height: 2px;
+            background: var(--luxury-blue);
+            z-index: -1;
+            transition: width 1.5s ease;
+        }
+
+        .flow-step-circle {
+            width: 120px;
+            text-align: center;
+        }
+
+        .step-num-circle {
+            width: 60px;
+            height: 60px;
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.2rem;
+            margin: 0 auto 1rem;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .flow-step-circle.active .step-num-circle {
+            border-color: var(--luxury-blue);
+            background: var(--luxury-blue);
+            color: white;
+            box-shadow: 0 10px 20px rgba(29, 78, 216, 0.2);
+        }
+
+        /* Deep Breakdown Blocks */
+        .breakdown-section {
+            padding: 8rem 5%;
+            background: #fcfcfc;
+        }
+
+        .breakdown-block {
+            max-width: 1200px;
+            margin: 0 auto 8rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+        }
+
+        .breakdown-block:nth-child(even) {
+            direction: rtl;
+        }
+
+        .breakdown-block:nth-child(even) > div {
+            direction: ltr;
+        }
+
+        .visual-box {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 32px;
+            box-shadow: var(--premium-shadow);
+            border: 1px solid rgba(0,0,0,0.03);
+            height: 350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .step-tag {
+            display: inline-block;
+            padding: 0.5rem 1.2rem;
+            background: rgba(29, 78, 216, 0.1);
+            color: var(--luxury-blue);
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .breakdown-content h2 { font-size: 2.5rem; margin-bottom: 1.5rem; }
+        .breakdown-content p { font-size: 1.1rem; line-height: 1.8; color: var(--text-muted); }
+
+        .feature-list {
+            margin-top: 2rem;
+            list-style: none;
+        }
+
+        .feature-list li {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
+        }
+
+        .feature-list li i { color: #25D366; }
+
+        /* Mentorship Engine Section */
+        .engine-section {
+            padding: 8rem 5%;
+            background: #111827;
+            color: white;
+        }
+
+        .engine-grid {
+            max-width: 1200px;
+            margin: 4rem auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .comp-card {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 3rem;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .comp-highlight {
+            border: 2px solid var(--luxury-blue);
+            background: rgba(29, 78, 216, 0.05);
+        }
+
+        /* Timeline Journey */
+        .timeline-scroll-box {
+            padding: 8rem 5%;
+            background: white;
+            text-align: center;
+        }
+
+        .month-rail {
+            max-width: 1000px;
+            margin: 6rem auto;
+            height: 6px;
+            background: #f1f5f9;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .month-rail-fill {
+            height: 100%;
+            width: 0%;
+            background: var(--luxury-blue);
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .month-pin {
+            position: absolute;
+            top: -40px;
+            transform: translateX(-50%);
+            text-align: center;
+            width: 120px;
+        }
+
+        .pin-label { font-weight: 800; font-size: 0.9rem; margin-top: 50px; display: block; }
+
+        /* Metrics */
+        .metrics-bar {
+            background: white;
+            padding: 6rem 5%;
+            display: flex;
+            justify-content: space-around;
+            border-top: 1px solid #f1f5f9;
+        }
+
+        .metric-item-large { text-align: center; }
+        .metric-item-large .num { font-size: 4rem; font-weight: 900; color: var(--luxury-blue); display: block; }
+        .metric-item-large .lbl { font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; }
+
+        @media (max-width: 768px) {
+            .breakdown-block { grid-template-columns: 1fr; gap: 3rem; }
+            .breakdown-block:nth-child(even) { direction: ltr; }
+            .flow-container { flex-direction: column; gap: 2rem; align-items: center; }
+            .flow-line, .flow-progress { display: none; }
+            .engine-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Premium Global Elements -->
+    <div class="scroll-progress"></div>
+    <div class="custom-cursor"></div>
+    <div class="cursor-follower"></div>
+    <div class="noise-overlay"></div>
+    <div class="scroll-to-top" style="display:none">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+    <nav class="navbar glass">
+        <a href="index.html" class="nav-brand">
+            <svg viewBox="0 0 320 50" height="60" style="margin-top: 5px;">
+                <g transform="translate(15, 25)">
+                    <path d="M 0 -15 Q 15 0 0 15" fill="none" stroke="#1d4ed8" stroke-width="3" stroke-linecap="round" />
+                    <line x1="-15" y1="0" x2="15" y2="0" stroke="#1d4ed8" stroke-width="3" stroke-linecap="round" />
+                    <polygon points="15,-5 25,0 15,5" fill="#f59e0b" />
+                </g>
+                <text x="55" y="34" font-family="'Inter', sans-serif" font-weight="900" font-size="28" fill="#1e293b" letter-spacing="-0.5">AIM ACADEMY</text>
+            </svg>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="process.html">Process</a></li>
+            <li><a href="toppers.html">Our Toppers</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+        <button class="menu-toggle"><i class="fas fa-bars"></i></button>
+        <a href="contact.html" class="cta-btn">Join Now</a>
+    </nav>
+    <a href="https://wa.me/919571037150" target="_blank" class="wa-float"><i class="fab fa-whatsapp"></i></a>
+
+    <!-- SECTION 1: HERO -->
+    <header class="process-hero">
+        <canvas id="flowBackground" class="hero-canvas-bg"></canvas>
+        <div style="position: relative; z-index: 10;">
+            <span class="step-tag">A Scientific Success System</span>
+            <h1 class="hero-title" style="margin-bottom: 1.5rem;">The Blueprint Behind<br><span style="color:var(--luxury-blue)">Every IIT Rank</span></h1>
+            <p style="font-size: 1.4rem; color: var(--text-muted); max-width: 800px; margin: 0 auto;">A structured, data-driven mentorship framework designed to transform effort into consistent top-tier results.</p>
+        </div>
+    </header>
+
+    <!-- SECTION 2: FLOW DIAGRAM -->
+    <section class="flow-section">
+        <div class="flow-container">
+            <div class="flow-line"></div>
+            <div class="flow-progress" id="flowProg"></div>
+            
+            <div class="flow-step-circle active" id="f1">
+                <div class="step-num-circle">1</div>
+                <span style="font-weight: 700; font-size: 0.9rem;">Analysis</span>
+            </div>
+            <div class="flow-step-circle" id="f2">
+                <div class="step-num-circle">2</div>
+                <span style="font-weight: 700; font-size: 0.9rem;">Targeting</span>
+            </div>
+            <div class="flow-step-circle" id="f3">
+                <div class="step-num-circle">3</div>
+                <span style="font-weight: 700; font-size: 0.9rem;">Strategy</span>
+            </div>
+            <div class="flow-step-circle" id="f4">
+                <div class="step-num-circle">4</div>
+                <span style="font-weight: 700; font-size: 0.9rem;">Mentorship</span>
+            </div>
+            <div class="flow-step-circle" id="f5">
+                <div class="step-num-circle">5</div>
+                <span style="font-weight: 700; font-size: 0.9rem;">Tracking</span>
+            </div>
+            <div class="flow-step-circle" id="f6">
+                <div class="step-num-circle">6</div>
+                <span style="font-weight: 700; font-size: 0.9rem;">Optimized</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: DEEP BREAKDOWN -->
+    <section class="breakdown-section">
+        <!-- STEP 1 -->
+        <div class="breakdown-block">
+            <div class="breakdown-content">
+                <span class="step-tag">Step 01</span>
+                <h2>Deep Preparation Analysis</h2>
+                <p>We don't start with a syllabus; we start with YOU. Our initial analysis creates a granular map of your current standing across 300+ critical JEE concepts.</p>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check-circle"></i> Topic-wise Strength Heatmap</li>
+                    <li><i class="fas fa-check-circle"></i> Retention Capability Analysis</li>
+                    <li><i class="fas fa-check-circle"></i> Learning Style (Visual/Logical) Detection</li>
+                </ul>
+            </div>
+            <div class="visual-box">
+                <canvas id="analysisChart"></canvas>
+            </div>
+        </div>
+
+        <!-- STEP 2 -->
+        <div class="breakdown-block">
+            <div class="breakdown-content">
+                <span class="step-tag">Step 02</span>
+                <h2>Targeted Goal Setting</h2>
+                <p>Dreams are turned into actionable data. We map your target AIR to the specific marks needed in each subject, creating a realistic success ladder.</p>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check-circle"></i> AIR-based Mark Mapping</li>
+                    <li><i class="fas fa-check-circle"></i> Weekly Score Milestones</li>
+                    <li><i class="fas fa-check-circle"></i> Progressive Difficulty Ladder</li>
+                </ul>
+            </div>
+            <div class="visual-box" style="background: linear-gradient(135deg, #f8fafc, #ffffff);">
+                <div style="text-align: center;">
+                    <div style="font-size: 3rem; font-weight: 900; color: var(--luxury-blue);">Target: AIR <span id="rankCount">1000</span></div>
+                    <p style="font-weight: 700; margin-top: 10px;">Required Marks: 220/360</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- STEP 3 -->
+        <div class="breakdown-block">
+            <div class="breakdown-content">
+                <span class="step-tag">Step 03</span>
+                <h2>The Strategy Blueprint</h2>
+                <p>Your timetable is synced with your biological prime time. We allocate hours to subjects based on your weakness index, not just random slots.</p>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check-circle"></i> Biological Peak Time Sync</li>
+                    <li><i class="fas fa-check-circle"></i> Weakness-Index hour Allocation</li>
+                    <li><i class="fas fa-check-circle"></i> 3-Tier Revision Cycles</li>
+                </ul>
+            </div>
+            <div class="visual-box">
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; width: 100%;">
+                    <div style="height: 100px; background: #e0f2fe; border: 1px solid #bae6fd; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: 700;">Physics (Weak)</div>
+                    <div style="height: 100px; background: #f0fdf4; border: 1px solid #dcfce7; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: 700;">Maths (Core)</div>
+                    <div style="height: 100px; background: #fefce8; border: 1px solid #fef9c3; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: 700;">Chem (Revision)</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- STEP 4 -->
+        <div class="breakdown-block">
+            <div class="breakdown-content">
+                <span class="step-tag">Step 04</span>
+                <h2>1-on-1 Elite Mentorship</h2>
+                <p>Weekly sessions that go beyond doubts. We focus on mindset, discipline, and the specific exam-cracking psychology used by toppers.</p>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check-circle"></i> Strategic doubt solving</li>
+                    <li><i class="fas fa-check-circle"></i> Burnout & Stress management</li>
+                    <li><i class="fas fa-check-circle"></i> Weekly Accountability check</li>
+                </ul>
+            </div>
+            <div class="visual-box" style="overflow: hidden;">
+                 <i class="fas fa-user-friends" style="font-size: 8rem; color: #f1f5f9; position: absolute;"></i>
+                 <div style="position: relative; z-index: 5; text-align: center;">
+                    <div style="padding: 1rem 2rem; background: var(--luxury-blue); color: white; border-radius: 50px; margin-bottom: 10px; transform: translateX(-20px);">Mentor: "Optimize Optics today."</div>
+                    <div style="padding: 1rem 2rem; background: #f1f5f9; color: var(--text-dark); border-radius: 50px; transform: translateX(20px);">Student: "Strategizing now!"</div>
+                 </div>
+            </div>
+        </div>
+
+        <!-- STEP 5 -->
+        <div class="breakdown-block">
+            <div class="breakdown-content">
+                <span class="step-tag">Step 05</span>
+                <h2>Data-Driven Tracking</h2>
+                <p>Every mock test is a data point. We track your accuracy-vs-speed curves and provide rank predictions based on your current performance trajectory.</p>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check-circle"></i> Accuracy vs Speed mapping</li>
+                    <li><i class="fas fa-check-circle"></i> Topic-wise improvement tracking</li>
+                    <li><i class="fas fa-check-circle"></i> Real-time Rank Prediction</li>
+                </ul>
+            </div>
+            <div class="visual-box">
+                <canvas id="trackingChart"></canvas>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: MENTORSHIP ENGINE -->
+    <section class="engine-section">
+        <div class="section-head" style="text-align: center; margin-bottom: 4rem;">
+            <h2 style="color: white; font-size: 3rem;">Philosophy: Not Coaching. <span style="color: var(--luxury-blue);">Mentorship.</span></h2>
+        </div>
+        <div class="engine-grid">
+            <div class="comp-card">
+                <h3 style="color: #94a3b8; margin-bottom: 2rem;">Typical Coaching</h3>
+                <ul style="list-style: none; padding: 0; color: #94a3b8;">
+                    <li style="margin-bottom: 1.5rem;"><i class="fas fa-times" style="color: #ef4444; margin-right: 15px;"></i> Generic Schedules</li>
+                    <li style="margin-bottom: 1.5rem;"><i class="fas fa-times" style="color: #ef4444; margin-right: 15px;"></i> Mass Teaching (50+ students)</li>
+                    <li style="margin-bottom: 1.5rem;"><i class="fas fa-times" style="color: #ef4444; margin-right: 15px;"></i> Focus on Syllabus completion only</li>
+                    <li style="margin-bottom: 1.5rem;"><i class="fas fa-times" style="color: #ef4444; margin-right: 15px;"></i> Passive doubt support</li>
+                </ul>
+            </div>
+            <div class="comp-card comp-highlight">
+                <h3 style="color: white; margin-bottom: 2rem;">Aim Academy Mentorship</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 1.5rem;"><i class="fas fa-check" style="color: #25D366; margin-right: 15px;"></i> Biological Prime-time Schedules</li>
+                    <li style="margin-bottom: 1.5rem;"><i class="fas fa-check" style="color: #25D366; margin-right: 15px;"></i> 1-on-1 Personalized Session</li>
+                    <li style="margin-bottom: 1.5rem;"><i class="fas fa-check" style="color: #25D366; margin-right: 15px;"></i> Focus on Exam-cracking Strategy</li>
+                    <li style="margin-bottom: 1.5rem;"><i class="fas fa-check" style="color: #25D366; margin-right: 15px;"></i> Strategic Mindset Intervention</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 5: STUDENT JOURNEY -->
+    <section class="timeline-scroll-box">
+        <h2>The 6-Month Transformation</h2>
+        <div class="month-rail">
+            <div class="month-rail-fill" id="railFill"></div>
+            
+            <div class="month-pin" style="left: 0%;">
+                <div style="width:15px; height:15px; background:white; border:3px solid var(--luxury-blue); border-radius:50%; margin:0 auto;"></div>
+                <span class="pin-label">Month 01<br><small>Analysis</small></span>
+            </div>
+            <div class="month-pin" style="left: 33%;">
+                <div style="width:15px; height:15px; background:white; border:3px solid var(--luxury-blue); border-radius:50%; margin:0 auto;"></div>
+                <span class="pin-label">Month 03<br><small>Stability</small></span>
+            </div>
+            <div class="month-pin" style="left: 66%;">
+                <div style="width:15px; height:15px; background:white; border:3px solid var(--luxury-blue); border-radius:50%; margin:0 auto;"></div>
+                <span class="pin-label">Month 05<br><small>Acceleration</small></span>
+            </div>
+            <div class="month-pin" style="left: 100%;">
+                <div style="width:15px; height:15px; background:white; border:3px solid var(--luxury-blue); border-radius:50%; margin:0 auto;"></div>
+                <span class="pin-label">Exam Day<br><small>Peak Rank</small></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 6: METRICS -->
+    <section class="metrics-bar">
+        <div class="metric-item-large">
+            <span class="num">10000+</span>
+            <span class="lbl">Students Mentored</span>
+        </div>
+        <div class="metric-item-large">
+            <span class="num">1000+</span>
+            <span class="lbl">IIT Selections</span>
+        </div>
+        <div class="metric-item-large">
+            <span class="num">50+</span>
+            <span class="lbl">Top 1000 Rank</span>
+        </div>
+    </section>
+
+    <!-- SECTION 8: FINAL CTA -->
+    <section class="topper-cta" style="padding: 10rem 5%;">
+        <h2>Follow the System.<br>Secure Your Rank.</h2>
+        <p style="font-size: 1.4rem; color: var(--text-muted); margin-bottom: 4rem;">Don't leave your IIT success to loose ends. Join the structured mentorship framework of Aim Academy today.</p>
+        <div style="display: flex; justify-content: center; gap: 2rem;">
+            <a href="contact.html" class="cta-btn" style="padding: 1.2rem 4rem; border: none; font-size: 1.2rem;">Start Consultation</a>
+            <a href="https://wa.me/919571037150" class="btn-secondary" style="padding: 1.2rem 4rem; border-radius: 50px;">WhatsApp Strategy Expert</a>
+        </div>
+    </section>
+
+    <footer style="background: var(--text-dark); padding: 4rem 5% 2rem; color: white;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; max-width: 1200px; margin: 0 auto; margin-bottom: 3rem;">
+            <div>
+                <h3 style="color: var(--gold-accent); font-size: 1.5rem; margin-bottom: 1.5rem;">Aim Academy</h3>
+                <p style="color: #94a3b8; line-height: 1.6;">Elite IIT JEE mentorship crafting the highest success rate in Kota under expert guidance.</p>
+            </div>
+            <div>
+                <h4 style="font-size: 1.2rem; margin-bottom: 1.5rem;">Quick Links</h4>
+                <ul style="list-style: none; padding: 0;">
+                    <li><a href="index.html" style="color: #94a3b8;">Home</a></li>
+                    <li><a href="toppers.html" style="color: #94a3b8;">Our Toppers</a></li>
+                    <li><a href="contact.html" style="color: #94a3b8;">Contact Us</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 style="font-size: 1.2rem; margin-bottom: 1.5rem;">Contact</h4>
+                <p style="color: #94a3b8;">aimacademykota@gmail.com</p>
+                <p style="color: #94a3b8;">+91 9571037150</p>
+                <p style="color: #94a3b8;">+91 9468937150</p>
+            </div>
+        </div>
+        <div style="text-align: center; padding-top: 3rem; border-top: 1px solid rgba(255,255,255,0.1); color: #94a3b8;">
+            &copy; 2026 Aim Academy. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        // Analysis Chart
+        const analysisCtx = document.getElementById('analysisChart').getContext('2d');
+        new Chart(analysisCtx, {
+            type: 'radar',
+            data: {
+                labels: ['Algebra', 'Calculus', 'Electrodynamics', 'Organic', 'Physical', 'Inorganic'],
+                datasets: [{
+                    label: 'Current Level',
+                    data: [65, 40, 55, 30, 70, 45],
+                    backgroundColor: 'rgba(29, 78, 216, 0.2)',
+                    borderColor: '#1d4ed8',
+                    pointBackgroundColor: '#1d4ed8'
+                }, {
+                    label: 'Target Peak',
+                    data: [95, 90, 92, 88, 98, 90],
+                    backgroundColor: 'rgba(251, 191, 36, 0.1)',
+                    borderColor: '#fbbf24',
+                    pointBackgroundColor: '#fbbf24'
+                }]
+            },
+            options: {
+                scales: { r: { beginAtZero: true, max: 100 } },
+                animation: { duration: 2500 }
+            }
+        });
+
+        // Tracking Chart
+        const trackingCtx = document.getElementById('trackingChart').getContext('2d');
+        new Chart(trackingCtx, {
+            type: 'line',
+            data: {
+                labels: ['Week 1', 'Week 4', 'Week 8', 'Week 12', 'Week 16'],
+                datasets: [{
+                    label: 'Accuracy %',
+                    data: [45, 62, 75, 88, 94],
+                    borderColor: '#1d4ed8',
+                    tension: 0.4
+                }]
+            },
+            options: { animation: { duration: 3000 } }
+        });
+    </script>
+
+    <!-- Core Scripts -->
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Local Animations
+        if (typeof gsap !== 'undefined') {
+            gsap.from(".hero-title", { opacity: 0, scale: 0.9, duration: 1, delay: 0.3 });
+        }
+
+        // Flow and Rail Animations
+        gsap.to("#flowProg", {
+            width: "90%",
+            scrollTrigger: {
+                trigger: ".flow-section",
+                start: "top center",
+                end: "bottom center",
+                scrub: 1,
+                onUpdate: (self) => {
+                    const steps = [1, 2, 3, 4, 5, 6];
+                    steps.forEach((s, index) => {
+                         if(self.progress > index * 0.16) {
+                             document.getElementById('f'+s).classList.add('active');
+                         }
+                    });
+                }
+            }
+        });
+
+        gsap.to("#railFill", {
+            width: "100%",
+            scrollTrigger: {
+                trigger: ".timeline-scroll-box",
+                start: "top 80%",
+                end: "bottom center",
+                scrub: 1
+            }
+        });
+
+        // Hero Background
+        const canvas = document.getElementById('flowBackground');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        let points = [];
+        for(let i=0; i<40; i++){
+            points.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                vx: (Math.random() - 0.5) * 0.5,
+                vy: (Math.random() - 0.5) * 0.5
+            });
+        }
+        function drawHeroBg(){
+            ctx.clearRect(0,0,canvas.width, canvas.height);
+            ctx.strokeStyle = 'rgba(29, 78, 216, 0.1)';
+            ctx.beginPath();
+            points.forEach((p, i) => {
+                p.x += p.vx; p.y += p.vy;
+                if(p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                if(p.y < 0 || p.y > canvas.height) p.vy *= -1;
+                points.forEach((p2, j) => {
+                    if(i === j) return;
+                    let dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+                    if(dist < 200){
+                        ctx.moveTo(p.x, p.y);
+                        ctx.lineTo(p2.x, p2.y);
+                    }
+                });
+            });
+            ctx.stroke();
+            requestAnimationFrame(drawHeroBg);
+        }
+        drawHeroBg();
+    </script>
+</body>
+</html>

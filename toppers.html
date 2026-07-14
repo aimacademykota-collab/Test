@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aim Academy - Toppers & Success Stories | IIT JEE Result Gallery</title>
+    <meta name="description"
+        content="Witness the phenomenal success of Aim Academy students at IIT Bombay, IIT Delhi, and more. Authentic student results and ranks. Join our elite JEE mentorship program today.">
+    <meta name="keywords"
+        content="IIT topper results, JEE success stories kota, Aim Academy results, IIT JEE rankings, JEE Advanced success">
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --luxury-blue: #003399;
+            --premium-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+            --gold-gradient: linear-gradient(135deg, #FFD700, #FFA500);
+        }
+
+        body {
+            background-color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .toppers-hero {
+            position: relative;
+            min-height: 100vh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: radial-gradient(circle at center, #ffffff 0%, #f0f7ff 100%);
+            padding-top: 100px;
+        }
+
+
+        .hero-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 10;
+            max-width: 900px;
+            padding: 2rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 6rem);
+            line-height: 0.9;
+            font-weight: 900;
+            margin-bottom: 2rem;
+            color: var(--text-dark);
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 4rem;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-stat-item {
+            text-align: center;
+        }
+
+        .hero-stat-num {
+            display: block;
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary-blue);
+        }
+
+        .hero-stat-label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Dashboard Section */
+        .dashboard-section {
+            padding: 8rem 5%;
+            background: #ffffff;
+        }
+
+        .dashboard-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .chart-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 24px;
+            box-shadow: var(--premium-shadow);
+            border: 1px solid #f0f0f0;
+        }
+
+        /* Cinematic Spotlight */
+        .spotlight-section {
+            padding: 0;
+            background: #f8fafc;
+            display: flex;
+            min-height: 80vh;
+            align-items: stretch;
+            flex-wrap: wrap;
+        }
+
+        .spotlight-visual {
+            flex: 1;
+            min-width: 50%;
+            background: #000;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .spotlight-visual img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.8;
+            transition: transform 1s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+
+        /* Interactive Card System - Basic Layout */
+        .toppers-scroll-section {
+            padding: 8rem 0;
+            background: #fff;
+            overflow: hidden;
+        }
+
+        .horizontal-scroll-container {
+            display: flex;
+            gap: 2rem;
+            padding: 2rem 5%;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            cursor: grab;
+        }
+
+        .horizontal-scroll-container::-webkit-scrollbar {
+            display: none;
+        }
+
+
+        /* Modal / Expanded View */
+        .topper-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            background: rgba(255, 255, 255, 0.98);
+            display: none;
+            opacity: 0;
+            padding: 4rem;
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .modal-img-container {
+            border-radius: 32px;
+            overflow: hidden;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.1);
+        }
+
+        .modal-info h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-box {
+            background: #f8fafc;
+            padding: 1.5rem;
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        .stat-box .val {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+        }
+
+        .stat-box .lbl {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .modal-close {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            font-size: 2rem;
+            cursor: pointer;
+            z-index: 2100;
+        }
+
+        /* Success Timeline */
+        .timeline-section {
+            padding: 8rem 5%;
+            background: #fcfcfc;
+        }
+
+        .timeline-container {
+            max-width: 1000px;
+            margin: 4rem auto;
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline-rail {
+            height: 4px;
+            background: #e2e8f0;
+            width: 100%;
+            position: absolute;
+            top: 2.6rem;
+            /* Align with dots */
+            left: 0;
+        }
+
+        .timeline-progress {
+            height: 4px;
+            background: var(--primary-blue);
+            width: 0%;
+            position: absolute;
+            top: 2.6rem;
+            /* Align with dots */
+            left: 0;
+            transition: width 1s linear;
+        }
+
+        .timeline-points {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            z-index: 5;
+        }
+
+        .point {
+            text-align: center;
+            width: 150px;
+        }
+
+        .dot {
+            width: 20px;
+            height: 20px;
+            background: white;
+            border: 4px solid var(--primary-blue);
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .point-active .dot {
+            transform: scale(1.5);
+            background: var(--primary-blue);
+        }
+
+        /* Success Wall (Animated Background) */
+        .success-wall {
+            position: relative;
+            height: 400px;
+            background: var(--text-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .floating-ranks {
+            position: absolute;
+            inset: 0;
+            opacity: 0.1;
+        }
+
+        .floating-rank {
+            position: absolute;
+            color: #fff;
+            font-weight: 900;
+            white-space: nowrap;
+            pointer-events: none;
+        }
+
+        .wall-text {
+            position: relative;
+            z-index: 10;
+            color: white;
+            font-size: 4rem;
+            font-weight: 800;
+            text-align: center;
+        }
+
+        /* CTA Section */
+        .topper-cta {
+            padding: 10rem 5%;
+            text-align: center;
+            background: linear-gradient(white, #f0f7ff);
+        }
+
+        .topper-cta h2 {
+            font-size: 4rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .modal-content {
+                grid-template-columns: 1fr;
+            }
+
+            .spotlight-section {
+                flex-direction: column;
+            }
+
+            .spotlight-content {
+                padding: 3rem 1.5rem;
+            }
+
+            .spotlight-rank {
+                font-size: 6rem;
+            }
+
+            .wall-text {
+                font-size: 2.5rem;
+            }
+        }
+
+        .scorecard-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            color: var(--text-dark);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            background: white;
+            font-size: 0.9rem;
+        }
+
+        .scorecard-table th {
+            background: var(--primary-blue);
+            color: white;
+            padding: 0.8rem;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .scorecard-table td {
+            padding: 0.8rem;
+            text-align: center;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .scorecard-table tr:last-child td {
+            border-bottom: none;
+            background: #f8fafc;
+            font-weight: 800;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Premium Global Elements -->
+    <div class="scroll-progress"></div>
+    <div class="custom-cursor"></div>
+    <div class="cursor-follower"></div>
+    <div class="noise-overlay"></div>
+    <div class="scroll-to-top" style="display:none">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+    <nav class="navbar glass">
+        <a href="index.html" class="nav-brand">
+            <svg viewBox="0 0 320 50" height="60" style="margin-top: 5px;">
+                <g transform="translate(15, 25)">
+                    <path d="M 0 -15 Q 15 0 0 15" fill="none" stroke="#1d4ed8" stroke-width="3"
+                        stroke-linecap="round" />
+                    <line x1="-15" y1="0" x2="15" y2="0" stroke="#1d4ed8" stroke-width="3" stroke-linecap="round" />
+                    <polygon points="15,-5 25,0 15,5" fill="#f59e0b" />
+                </g>
+                <text x="55" y="34" font-family="'Inter', sans-serif" font-weight="900" font-size="28" fill="#1e293b"
+                    letter-spacing="-0.5">AIM ACADEMY</text>
+            </svg>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="process.html">Process</a></li>
+            <li><a href="toppers.html">Our Toppers</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+        <button class="menu-toggle"><i class="fas fa-bars"></i></button>
+        <a href="contact.html" class="cta-btn">Join Now</a>
+    </nav>
+
+    <!-- SECTION 1: CINEMATIC HERO -->
+    <header class="toppers-hero">
+        <canvas class="hero-canvas" id="particles"></canvas>
+        <div class="hero-content">
+            <span class="hero-subtitle">The Legacy of Excellence</span>
+            <h1 class="hero-title">Our Results Speak<br><span style="color:var(--primary-blue)">Proven Mentorship</span>
+            </h1>
+
+            <div class="marquee-wrap"
+                style="margin-top: 2rem; background: rgba(0,0,0,0.03); padding: 1rem 0; border-radius: 12px; overflow: hidden; width: 100%; position: relative;">
+                <div class="marquee-content"
+                    style="display: flex; gap: 4rem; width: max-content; animation: marquee 30s linear infinite;">
+                    <span style="font-weight: 800; color: var(--gold-accent);">AIR 624 (IIT BOMBAY)</span>
+                    <span style="font-weight: 800; color: #1e293b;">JEE MAIN 99.98%</span>
+                    <span style="font-weight: 800; color: var(--gold-accent);">AIR 1012 (IIT GUWAHATI)</span>
+                    <span style="font-weight: 800; color: #1e293b;">AIR 1166 (IIT BOMBAY)</span>
+                    <span style="font-weight: 800; color: var(--gold-accent);">AIR 3418 (IIT KANPUR)</span>
+                    <span style="font-weight: 800; color: #1e293b;">JEE MAIN 99.94%</span>
+                    <span style="font-weight: 800; color: var(--gold-accent);">IIT ROORKEE SELECTION</span>
+                    <span style="font-weight: 800; color: #1e293b;">AIR 2100 (IIT GANDHINAGAR)</span>
+                    <!-- Duplicate for seamless loop -->
+                    <span style="font-weight: 800; color: var(--gold-accent);">AIR 624 (IIT BOMBAY)</span>
+                    <span style="font-weight: 800; color: #1e293b;">JEE MAIN 99.98%</span>
+                    <span style="font-weight: 800; color: var(--gold-accent);">AIR 1012 (IIT GUWAHATI)</span>
+                </div>
+            </div>
+
+            <style>
+                @keyframes marquee {
+                    0% {
+                        transform: translateX(0);
+                    }
+
+                    100% {
+                        transform: translateX(-50%);
+                    }
+                }
+            </style>
+
+            <div class="hero-stats">
+                <div class="hero-stat-item">
+                    <span class="hero-stat-num" data-val="10000">0</span>
+                    <span class="hero-stat-label">Students Mentored</span>
+                </div>
+                <div class="hero-stat-item">
+                    <span class="hero-stat-num" data-val="1000">0</span>
+                    <span class="hero-stat-label">IIT Selections</span>
+                </div>
+                <div class="hero-stat-item">
+                    <span class="hero-stat-num" data-val="50">50+</span>
+                    <span class="hero-stat-label">Top 1000 Rank</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- SECTION 2: RESULTS DASHBOARD -->
+    <section class="dashboard-section" style="background: linear-gradient(to bottom, #f8fafc, #fff);">
+        <div class="section-head">
+            <span class="hero-subtitle" style="margin-bottom: 0.5rem;">Global Impact</span>
+            <h2>Proven Track Record</h2>
+            <p>Empowering students to breach the elite ranks of IITs year after year.</p>
+        </div>
+        <div class="dashboard-container">
+            <div class="chart-container gs-card" style="padding: 2.5rem; border-radius: 24px;">
+                <h3
+                    style="margin-bottom: 2rem; color: #1e293b; font-weight: 800; display: flex; align-items: center; gap: 1rem;">
+                    <i class="fas fa-trophy" style="color: var(--gold-accent);"></i> Rank Distribution
+                </h3>
+                <canvas id="rankChart"></canvas>
+            </div>
+            <div class="chart-container gs-card" style="padding: 2.5rem; border-radius: 24px;">
+                <h3
+                    style="margin-bottom: 2rem; color: #1e293b; font-weight: 800; display: flex; align-items: center; gap: 1rem;">
+                    <i class="fas fa-chart-line" style="color: var(--primary-blue);"></i> Selection Velocity
+                </h3>
+                <canvas id="selectionChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Results highlight micro-strip -->
+        <div style="display: flex; justify-content: center; gap: 2rem; margin-top: 4rem; flex-wrap: wrap;">
+            <div class="gs-card"
+                style="padding: 1.5rem 2.5rem; border-radius: 12px; border-left: 4px solid var(--gold-accent);">
+                <div style="font-size: 0.7rem; text-transform: uppercase; color: #64748b; font-weight: 700;">JEE
+                    Advanced</div>
+                <div style="font-size: 1.5rem; font-weight: 900; color: #1e293b;">95% Selection Ratio</div>
+            </div>
+            <div class="gs-card"
+                style="padding: 1.5rem 2.5rem; border-radius: 12px; border-left: 4px solid var(--primary-blue);">
+                <div style="font-size: 0.7rem; text-transform: uppercase; color: #64748b; font-weight: 700;">Top 1000
+                    Ranks</div>
+                <div style="font-size: 1.5rem; font-weight: 900; color: #1e293b;">50+ This Year</div>
+            </div>
+            <div class="gs-card" style="padding: 1.5rem 2.5rem; border-radius: 12px; border-left: 4px solid #10b981;">
+                <div style="font-size: 0.7rem; text-transform: uppercase; color: #64748b; font-weight: 700;">Average
+                    Growth</div>
+                <div style="font-size: 1.5rem; font-weight: 900; color: #1e293b;">2.5x Score Boost</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: FEATURED TOPPER (AYUSH PATI) -->
+    <section class="spotlight-section" style="position: relative; overflow: hidden; padding: 10rem 5%;">
+        <div
+            style="position: absolute; top: 10%; left: 10%; width: 400px; height: 400px; background: radial-gradient(circle, rgba(29, 78, 216, 0.1), transparent 70%); z-index: 0; filter: blur(60px);">
+        </div>
+        <div class="spotlight-grid"
+            style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 6rem; align-items: center; position: relative; z-index: 1;">
+            <div class="spotlight-visual-box gs-card"
+                style="border-radius: 40px; overflow: hidden; box-shadow: 0 50px 100px rgba(0,0,0,0.15); height: 600px;">
+                <img src="assets/toppers/Ayush Pati.jpg" alt="Featured Topper"
+                    style="width: 100%; height: 100%; object-fit: cover; object-position: center top;">
+            </div>
+            <div class="spotlight-text-content">
+                <div class="spotlight-tag"
+                    style="background: rgba(251, 191, 36, 0.1); color: var(--gold-accent); padding: 0.6rem 1.4rem; border-radius: 50px; display: inline-block; font-weight: 800; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 2rem; border: 1px solid rgba(251, 191, 36, 0.2);">
+                    IIT BOMBAY | CRL 624
+                </div>
+                <h2
+                    style="font-size: clamp(3rem, 6vw, 4.5rem); font-weight: 950; line-height: 1; margin-bottom: 1.5rem; letter-spacing: -2px; color: #111827;">
+                    Ayush <span
+                        style="background: linear-gradient(135deg, var(--primary-blue), #60a5fa); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">Pati</span>
+                </h2>
+                <div
+                    style="font-size: 1.4rem; font-weight: 700; color: var(--primary-blue); margin-bottom: 2.5rem; display: flex; align-items: center; gap: 1rem;">
+                    Electrical Engineering <div
+                        style="width: 40px; height: 3px; background: var(--gold-accent); border-radius: 2px;"></div>
+                </div>
+                <div class="spotlight-quote"
+                    style="font-size: 1.8rem; font-style: italic; color: #4b5563; line-height: 1.6; border-left: 6px solid var(--primary-blue); padding-left: 2.5rem; margin-bottom: 3.5rem; opacity: 0.9;">
+                    "Exceptional grit and consistent mentorship at Aim Academy paved the way for Electrical Engineering
+                    at the prestigious IIT Bombay."
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;">
+                    <div class="stat-box">
+                        <div
+                            style="font-size: 0.75rem; text-transform: uppercase; color: #94a3b8; font-weight: 700; letter-spacing: 1px; margin-bottom: 0.5rem;">
+                            JEE Main Percentile</div>
+                        <div style="font-size: 2.2rem; font-weight: 900; color: #1e293b;">99.94</div>
+                    </div>
+                    <div class="stat-box">
+                        <div
+                            style="font-size: 0.75rem; text-transform: uppercase; color: #94a3b8; font-weight: 700; letter-spacing: 1px; margin-bottom: 0.5rem;">
+                            JEE Adv Rank</div>
+                        <div style="font-size: 2.2rem; font-weight: 900; color: var(--gold-accent);">AIR 624</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: INTERACTIVE TOPPER EXPERIENCE -->
+    <section class="toppers-scroll-section">
+        <div class="section-head">
+            <h2>The Rankers' Gallery</h2>
+            <p>Click on any card to explore their journey</p>
+        </div>
+        <div class="horizontal-scroll-container" id="toppersGallery">
+            <!-- Dynamic Cards Injected via JS -->
+        </div>
+    </section>
+
+    <!-- SECTION 5: SUCCESS TIMELINE -->
+    <section class="timeline-section">
+        <div class="section-head">
+            <h2>The Path to IIT</h2>
+            <p>How we transform hard work into ranks</p>
+        </div>
+        <div class="journey-line">
+            <div class="line-base"></div>
+            <div class="line-progress" id="progressLine"></div>
+            <div class="timeline-points">
+                <div class="point" id="p1">
+                    <div class="dot"></div>
+                    <strong>Preparation</strong>
+                    <p style="font-size: 0.8rem;">Core Foundation</p>
+                </div>
+                <div class="point" id="p2">
+                    <div class="dot"></div>
+                    <strong>Mentorship</strong>
+                    <p style="font-size: 0.8rem;">Custom Strategy</p>
+                </div>
+                <div class="point" id="p3">
+                    <div class="dot"></div>
+                    <strong>Test Series</strong>
+                    <p style="font-size: 0.8rem;">Performance Peak</p>
+                </div>
+                <div class="point" id="p4">
+                    <div class="dot"></div>
+                    <strong>Rank</strong>
+                    <p style="font-size: 0.8rem;">Victory</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 6: INSTITUTE ADVANTAGE -->
+    <section class="dashboard-section" style="background:#fff;">
+        <div class="dashboard-container" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;">
+            <div class="feature-card" style="padding: 3rem;">
+                <div class="f-icon"><i class="fas fa-brain"></i></div>
+                <h3>Personalized Strategy</h3>
+                <p>Not a generic schedule. We create a map designed for your specific strengths and weaknesses.</p>
+            </div>
+            <div class="feature-card" style="padding: 3rem;">
+                <div class="f-icon"><i class="fas fa-chart-line"></i></div>
+                <h3>Advanced Analytics</h3>
+                <p>Our test analysis system pinpoints the exact concepts where you lose marks consistently.</p>
+            </div>
+            <div class="feature-card" style="padding: 3rem;">
+                <div class="f-icon"><i class="fas fa-user-shield"></i></div>
+                <h3>Emotional Resilience</h3>
+                <p>JEE is a mental marathon. Our mentors ensure you stay peak-performance mode throughout.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 7: SUCCESS WALL -->
+    <section class="success-wall">
+        <div class="floating-ranks" id="floatingRanksContainer"></div>
+        <div class="wall-text">Consistency Creates Rankers</div>
+    </section>
+
+    <!-- SECTION 8: CTA -->
+    <section class="topper-cta">
+        <h2>Next Topper Could Be You</h2>
+        <p style="font-size: 1.5rem; color: var(--text-muted); margin-bottom: 3rem;">Join Aim Academy and start your
+            journey to the premier institutes of India.</p>
+        <div style="display: flex; justify-content: center; gap: 2rem;">
+            <a href="contact.html" class="cta-btn" style="padding: 1.2rem 3rem; font-size: 1.2rem;">Join Program</a>
+            <a href="https://wa.me/919571037150" class="btn-secondary"
+                style="padding: 1.2rem 3rem; font-size: 1.2rem; border-radius: 50px;">WhatsApp Expert</a>
+        </div>
+    </section>
+
+    <!-- TOPPER MODAL -->
+    <div id="topperModal" class="topper-modal">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <div class="modal-content">
+            <div class="modal-img-container">
+                <img src="" id="modalImg" style="width:100%; height:auto;">
+            </div>
+            <div class="modal-info">
+                <div id="modalRank" class="card-rank" style="font-size: 4rem;">AIR --</div>
+                <h2 id="modalName">Student Name</h2>
+                <p id="modalIIT"
+                    style="font-size: 1.5rem; color: var(--primary-blue); font-weight: 700; margin-bottom: 2rem;">IIT
+                    Institution</p>
+
+                <div class="stats-grid">
+                    <div class="stat-box"><span class="val" id="mPhy">98</span><span class="lbl">Physics</span></div>
+                    <div class="stat-box"><span class="val" id="mChe">95</span><span class="lbl">Chemistry</span></div>
+                    <div class="stat-box"><span class="val" id="mMat">99</span><span class="lbl">Maths</span></div>
+                </div>
+
+                <div id="scorecardDetail" style="display:none; margin-top: 2rem;">
+                    <h3 style="font-size: 1.2rem; margin-bottom: 1rem; color: var(--primary-blue);">Detailed Scorecard
+                    </h3>
+                    <table class="scorecard-table">
+                        <thead>
+                            <tr>
+                                <th>Subject</th>
+                                <th>Paper 1</th>
+                                <th>Paper 2</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="text-align: left; font-weight: 600;">Chemistry</td>
+                                <td id="detChe1">--</td>
+                                <td id="detChe2">--</td>
+                                <td id="detCheT" style="color: var(--primary-blue);">--</td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: left; font-weight: 600;">Physics</td>
+                                <td id="detPhy1">--</td>
+                                <td id="detPhy2">--</td>
+                                <td id="detPhyT" style="color: var(--primary-blue);">--</td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: left; font-weight: 600;">Mathematics</td>
+                                <td id="detMat1">--</td>
+                                <td id="detMat2">--</td>
+                                <td id="detMatT" style="color: var(--primary-blue);">--</td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: left;">OVERALL</td>
+                                <td colspan="2" id="detPos" style="font-size: 0.8rem; color: #64748b;">Positives: --
+                                </td>
+                                <td id="detTotal" style="font-size: 1.2rem; color: var(--primary-blue);">--</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div style="margin-top: 3rem;">
+                    <h3>Study Strategy</h3>
+                    <p id="modalStrategy">Loading strategy insights...</p>
+                </div>
+
+                <div style="margin-top: 2rem; padding: 2rem; background: #f0f7ff; border-radius: 20px;">
+                    <h4 style="color: var(--primary-blue);">Mentorship Impact</h4>
+                    <p id="modalImpact">The guidance helped bridge the gap between hard work and smart rank achievement.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer style="background: var(--text-dark); padding: 4rem 5% 2rem; color: white;">
+        <div
+            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; max-width: 1200px; margin: 0 auto; margin-bottom: 3rem;">
+            <div>
+                <h3 style="color: var(--gold-accent); font-size: 1.5rem; margin-bottom: 1.5rem;">Aim Academy</h3>
+                <p style="color: #94a3b8; line-height: 1.6; margin-bottom: 1.5rem;">Elite IIT JEE mentorship crafting
+                    the highest success rate in Kota under expert guidance.</p>
+                <div style="display: flex; gap: 1rem;">
+                    <a href="https://instagram.com/govindrajsingh1908" target="_blank"
+                        style="color: white; font-size: 1.5rem; transition: 0.3s;"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/919571037150" target="_blank"
+                        style="color: white; font-size: 1.5rem; transition: 0.3s;"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div>
+                <h4 style="font-size: 1.2rem; margin-bottom: 1.5rem;">Quick Links</h4>
+                <ul style="list-style: none; padding: 0;">
+                    <li><a href="index.html" style="color: #94a3b8;">Home</a></li>
+                    <li><a href="about.html" style="color: #94a3b8;">About Us</a></li>
+                    <li><a href="process.html" style="color: #94a3b8;">Mentorship Process</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 style="font-size: 1.2rem; margin-bottom: 1.5rem;">Contact</h4>
+                <p style="color: #94a3b8;">aimacademykota@gmail.com</p>
+                <p style="color: #94a3b8;">+91 9571037150</p>
+                <p style="color: #94a3b8;">+91 9468937150</p>
+            </div>
+        </div>
+        <div
+            style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto;">
+            <div style="color: #94a3b8;">&copy; 2026 Aim Academy.</div>
+            <div style="color: #94a3b8;">Designed by <a href="https://techol.in"
+                    style="color: var(--primary-blue);">techol.in</a></div>
+        </div>
+    </footer>
+
+    <!-- Core Scripts -->
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+    <script src="script.js"></script>
+
+    <script>
+        // GSAP Animations
+        if (typeof gsap !== 'undefined') {
+            gsap.from(".hero-subtitle", { opacity: 0, y: 20, duration: 1, delay: 0.5 });
+            gsap.from(".hero-title", { opacity: 0, scale: 0.9, duration: 1.2, delay: 0.7, ease: "power4.out" });
+            gsap.from(".hero-stat-item", { opacity: 0, y: 30, stagger: 0.2, duration: 1, delay: 1 });
+        }
+
+        // Counter Animation
+        document.querySelectorAll('.hero-stat-num').forEach(stat => {
+            const target = parseInt(stat.getAttribute('data-val'));
+            if (!isNaN(target)) {
+                let count = 0;
+                const updateCount = () => {
+                    const increment = target / 100;
+                    if (count < target) {
+                        count += increment;
+                        stat.innerText = Math.ceil(count) + "+";
+                        setTimeout(updateCount, 20);
+                    } else {
+                        stat.innerText = target + "+";
+                    }
+                };
+                updateCount();
+            }
+        });
+
+        // Background Particles
+        const canvas = document.getElementById('particles');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        let particles = [];
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2;
+                this.speedX = Math.random() * 0.5 - 0.25;
+                this.speedY = Math.random() * 0.5 - 0.25;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x > canvas.width) this.x = 0;
+                if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0;
+                if (this.y < 0) this.y = canvas.height;
+            }
+            draw() {
+                ctx.fillStyle = 'rgba(29, 78, 216, 0.2)';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+        function initParticles() {
+            particles = [];
+            for (let i = 0; i < 80; i++) particles.push(new Particle());
+        }
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 100) {
+                        ctx.beginPath();
+                        ctx.strokeStyle = `rgba(29, 78, 216, ${0.1 * (1 - dist / 100)})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(animateParticles);
+        }
+        initParticles();
+        animateParticles();
+
+        // Charts
+        const rankCtx = document.getElementById('rankChart').getContext('2d');
+        new Chart(rankCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Top 100', 'Top 500', 'Top 1000', 'Top 5000'],
+                datasets: [{
+                    label: 'Number of Students',
+                    data: [32, 185, 480, 1420],
+                    backgroundColor: 'rgba(29, 78, 216, 0.8)',
+                    borderRadius: 10
+                }]
+            },
+            options: {
+                animation: { duration: 2000, easing: 'easeOutQuart' },
+                scales: { y: { beginAtZero: true } }
+            }
+        });
+
+        const selectionCtx = document.getElementById('selectionChart').getContext('2d');
+        new Chart(selectionCtx, {
+            type: 'line',
+            data: {
+                labels: ['2022', '2023', '2024', '2025', '2026'],
+                datasets: [{
+                    label: 'Selection %',
+                    data: [52, 68, 79, 88, 95],
+                    borderColor: '#fbbf24',
+                    fill: true,
+                    backgroundColor: 'rgba(251, 191, 36, 0.1)',
+                    tension: 0.4
+                }]
+            },
+            options: {
+                animation: { duration: 2500, easing: 'easeOutQuart' }
+            }
+        });
+
+        // Timeline Scroll Interaction
+        gsap.to("#progressLine", {
+            width: "100%",
+            scrollTrigger: {
+                trigger: ".timeline-section",
+                start: "top center",
+                end: "bottom center",
+                scrub: 1,
+                onUpdate: (self) => {
+                    const prog = self.progress;
+                    if (prog > 0) document.getElementById('p1').classList.add('point-active');
+                    if (prog > 0.33) document.getElementById('p2').classList.add('point-active');
+                    if (prog > 0.66) document.getElementById('p3').classList.add('point-active');
+                    if (prog > 0.95) document.getElementById('p4').classList.add('point-active');
+                }
+            }
+        });
+
+        // Floating Ranks Wall
+        const wall = document.getElementById('floatingRanksContainer');
+        const ranks = ['AIR 12', 'AIR 45', 'AIR 82', 'AIR 102', 'AIR 142', 'AIR 204', 'AIR 312', 'AIR 455'];
+        for (let i = 0; i < 20; i++) {
+            const el = document.createElement('div');
+            el.className = 'floating-rank';
+            el.innerText = ranks[Math.floor(Math.random() * ranks.length)];
+            el.style.left = Math.random() * 100 + "%";
+            el.style.top = Math.random() * 100 + "%";
+            el.style.fontSize = (Math.random() * 2 + 1) + "rem";
+            wall.appendChild(el);
+            gsap.to(el, {
+                x: Math.random() * 100 - 50,
+                y: Math.random() * 100 - 50,
+                duration: Math.random() * 5 + 5,
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut"
+            });
+        }
+
+        // Modal Logic
+        const topperData = [
+            {
+                name: "Ayush Pati",
+                mains: "99.94",
+                adv: "624",
+                iit: "IIT Bombay",
+                branch: "Electrical Engineering",
+                img: "assets/toppers/Ayush Pati.jpg",
+                strategy: "Consistent performance across both papers allowed me to secure Electrical Engineering at IIT Bombay. My preparation focused on maintaining a high accuracy rate and selective problem solving from standard modules.",
+                physics: 82, chemistry: 86, maths: 58,
+                detailed: { che1: 44, che2: 42, cheT: 86, phy1: 46, phy2: 36, phyT: 82, mat1: 36, mat2: 22, matT: 58, total: 226, positive: 236 }
+            },
+            {
+                name: "Tejas Agrawal",
+                mains: "99.98",
+                adv: "1012",
+                iit: "IIT Guwahati",
+                branch: "Maths & Computing",
+                img: "assets/toppers/TA.jpeg",
+                strategy: "Secured a top rank in both JEE Main and Advanced through strategic time management and conceptual mastery. The focus was on mastering high-weightage topics early in the 12th grade.",
+                physics: 80, chemistry: 75, maths: 70,
+                detailed: { che1: 38, che2: 37, cheT: 75, phy1: 42, phy2: 38, phyT: 80, mat1: 35, mat2: 35, matT: 70, total: 225, positive: 235 }
+            },
+            {
+                name: "Anay Agrawal",
+                mains: "99.60",
+                adv: "1166",
+                iit: "IIT Bombay",
+                branch: "Mechanical Engineering",
+                img: "assets/toppers/T4.jpeg",
+                strategy: "Targeted focus on Mechanical engineering fundamentals and consistent practice in high-weightage topics. Precise mock analysis helped bridge the gap during the final months.",
+                physics: 78, chemistry: 89, maths: 36,
+                detailed: { che1: 44, che2: 45, cheT: 89, phy1: 46, phy2: 32, phyT: 78, mat1: 15, mat2: 21, matT: 36, total: 203, positive: 209 }
+            },
+            {
+                name: "Rujay Gupta",
+                mains: "99.88",
+                adv: "3418",
+                iit: "IIT Kanpur",
+                branch: "Data Science & AI",
+                img: "assets/toppers/RG.jpeg",
+                strategy: "Consistent performance in mathematics and data-driven mock analysis were the pillars of my success at IIT Kanpur.",
+                physics: "--", chemistry: "--", maths: "--", hideStats: true
+            },
+            {
+                name: "Tashu Agrawal",
+                mains: "99.40",
+                adv: "Qualified",
+                iit: "IIT Roorkee",
+                branch: "Engineering Physics",
+                img: "assets/toppers/T3.jpeg",
+                strategy: "Focused on bridging the gap between theoretical physics and competitive JEE Advanced patterns through personalized mentorship and exhaustive problem sheets.",
+                physics: 72, chemistry: 68, maths: 45, hideStats: false
+            },
+            {
+                name: "Siddhi Agarwal",
+                mains: "99.49",
+                adv: "Qualified",
+                iit: "MNIT Jaipur",
+                branch: "Computer Science",
+                img: "assets/toppers/SA.jpg",
+                strategy: "Consistently pursued excellence in algorithmic thinking and logical reasoning to master the CSE entrance requirements. Regular doubt-solving sessions were key.",
+                physics: "--", chemistry: "--", maths: "--", hideStats: true
+            },
+            {
+                name: "Charmi Jain",
+                mains: "99.26",
+                adv: "7379",
+                iit: "IIT Kanpur",
+                branch: "Mechanical Engineering",
+                img: "assets/toppers/T8.jpeg",
+                strategy: "Right direction and smooth JoSAA process support from Aim Academy made my journey to IIT Kanpur seamless. I focused on building a strong foundation in mechanics and consistent practice of high-weightage chemistry topics.",
+                physics: 47, chemistry: 64, maths: 20,
+                detailed: { che1: 40, che2: 24, cheT: 64, phy1: 30, phy2: 17, phyT: 47, mat1: 9, mat2: 11, matT: 20, total: 131, positive: 142 }
+            },
+            {
+                name: "Aarushi Ghosh",
+                mains: "99.46",
+                adv: "Qualified",
+                iit: "IIT Kharagpur",
+                branch: "Chemical Engineering",
+                img: "assets/toppers/AG.jpg",
+                strategy: "Exceptional grit and focused strategy led to a prestigious seat at IIT Kharagpur. Consistent performance in chemistry was my biggest strength.",
+                physics: "--", chemistry: "--", maths: "--", hideStats: true
+            },
+            {
+                name: "Ankesh Rawat",
+                mains: "99.14",
+                adv: "Qualified",
+                iit: "IIT Kharagpur",
+                branch: "Metallurgy",
+                img: "assets/toppers/T6.jpeg",
+                strategy: "Achieved IIT Kharagpur with 99.14 percentile. Mentorship helped in smart decision making during the crucial prep months and rank optimization.",
+                physics: "--", chemistry: "--", maths: "--", hideStats: true
+            },
+            {
+                name: "Nithin Gowda K V",
+                mains: "98.80",
+                adv: "Qualified",
+                iit: "IIT Dhanbad",
+                branch: "Chemical Engineering",
+                img: "assets/toppers/T10.jpeg",
+                strategy: "Leveraged the testing framework to master Chemical Engineering topics and secure a seat at IIT Dhanbad. Strategic paper attempting was my game changer.",
+                physics: "--", chemistry: "--", maths: "--", hideStats: true
+            },
+            {
+                name: "Suryansh Banke",
+                mains: "98.39",
+                adv: "Qualified",
+                iit: "IIT Bhubaneswar",
+                branch: "B.Tech",
+                img: "assets/toppers/T7.jpeg",
+                strategy: "Guidance from Aim Academy mentors played a key role in achieving IIT admission with strategic subject distribution and rigorous practice.",
+                physics: "--", chemistry: "--", maths: "--", hideStats: true
+            },
+            {
+                name: "Seeya Singh",
+                mains: "97.72",
+                adv: "Qualified",
+                iit: "IIIT Pune",
+                branch: "B.Tech",
+                img: "assets/toppers/SS.jpeg",
+                strategy: "Focused preparation and consistent mock testing led to a successful selection at IIIT Pune. I worked heavily on improving my speed in mathematics.",
+                physics: "--", chemistry: "--", maths: "--", hideStats: true
+            }
+        ];
+
+        function renderToppers() {
+            const container = document.getElementById('toppersGallery');
+            if (!container) return;
+            container.innerHTML = topperData.map((topper, index) => `
+                <div class="topper-premium-card" onclick="openTopper(${index})">
+                    <img src="${topper.img}" alt="${topper.name}" class="topper-card-img">
+                    <div class="topper-card-overlay">
+                        <div class="topper-results">
+                            <div class="result-chip">
+                                <span class="result-val">${topper.mains}</span>
+                                <span class="result-lbl">JEE Main %ile</span>
+                            </div>
+                            <div class="result-chip">
+                                <span class="result-val">${topper.adv}</span>
+                                <span class="result-lbl">JEE Adv Rank</span>
+                            </div>
+                        </div>
+                        <h3>${topper.name}</h3>
+                        <div class="topper-iit-tag">${topper.iit} - ${topper.branch}</div>
+                        <p class="topper-description">${topper.strategy.substring(0, 80)}...</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        renderToppers();
+
+        function openTopper(id) {
+            const data = topperData[id];
+            if (!data) return;
+            document.getElementById('modalName').innerText = data.name;
+
+            // Construct rank display string
+            let rankText = `JEE Main: ${data.mains}`;
+            if (data.adv && data.adv !== "Qualified") {
+                rankText += ` | AIR ${data.adv}`;
+            } else if (data.adv === "Qualified") {
+                rankText += ` | JEE Adv Qualified`;
+            }
+            document.getElementById('modalRank').innerText = rankText;
+            document.getElementById('modalRank').style.fontSize = "2.5rem"; // Adjust for longer strings
+
+            document.getElementById('modalIIT').innerText = `${data.iit} - ${data.branch}`;
+            document.getElementById('modalImg').src = data.img;
+            document.getElementById('modalStrategy').innerText = data.strategy;
+            document.getElementById('mPhy').innerText = data.physics;
+            document.getElementById('mChe').innerText = data.chemistry;
+            document.getElementById('mMat').innerText = data.maths;
+
+            const statsGrid = document.querySelector('.stats-grid');
+            if (data.hideStats) {
+                statsGrid.style.display = 'none';
+            } else {
+                statsGrid.style.display = 'grid';
+            }
+
+            // Detailed Scorecard Logic
+            const scorecard = document.getElementById('scorecardDetail');
+            if (data.detailed) {
+                scorecard.style.display = 'block';
+                document.getElementById('detChe1').innerText = data.detailed.che1;
+                document.getElementById('detChe2').innerText = data.detailed.che2;
+                document.getElementById('detCheT').innerText = data.detailed.cheT;
+                document.getElementById('detPhy1').innerText = data.detailed.phy1;
+                document.getElementById('detPhy2').innerText = data.detailed.phy2;
+                document.getElementById('detPhyT').innerText = data.detailed.phyT;
+                document.getElementById('detMat1').innerText = data.detailed.mat1;
+                document.getElementById('detMat2').innerText = data.detailed.mat2;
+                document.getElementById('detMatT').innerText = data.detailed.matT;
+                document.getElementById('detPos').innerText = "Positive Marks: " + data.detailed.positive;
+                document.getElementById('detTotal').innerText = data.detailed.total;
+            } else {
+                if (scorecard) scorecard.style.display = 'none';
+            }
+
+            const modal = document.getElementById('topperModal');
+            modal.style.display = 'block';
+            gsap.to(modal, { opacity: 1, duration: 0.5 });
+            gsap.from(".modal-content", { y: 50, opacity: 0, duration: 0.8, ease: "power3.out" });
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('topperModal');
+            gsap.to(modal, {
+                opacity: 0, duration: 0.4, onComplete: () => {
+                    modal.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

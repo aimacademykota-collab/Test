@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found | Aim Academy</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .error-sec {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: radial-gradient(circle at center, #ffffff 0%, #f0f7ff 100%);
+        }
+        .error-content h1 {
+            font-size: 8rem;
+            color: var(--primary-blue);
+            line-height: 1;
+            margin-bottom: 1rem;
+            opacity: 0.2;
+        }
+        .error-message {
+            margin-bottom: 2rem;
+        }
+        .error-message h2 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar glass">
+        <a href="index.html" class="nav-brand">
+            <svg viewBox="0 0 320 50" height="60" style="margin-top: 5px;">
+                <g transform="translate(15, 25)">
+                    <path d="M 0 -15 Q 15 0 0 15" fill="none" stroke="#1d4ed8" stroke-width="3" stroke-linecap="round" />
+                    <line x1="-15" y1="0" x2="15" y2="0" stroke="#1d4ed8" stroke-width="3" stroke-linecap="round" />
+                    <polygon points="15,-5 25,0 15,5" fill="#f59e0b" />
+                </g>
+                <text x="55" y="34" font-family="'Inter', sans-serif" font-weight="900" font-size="28" fill="#1e293b" letter-spacing="-0.5">AIM ACADEMY</text>
+            </svg>
+        </a>
+    </nav>
+
+    <section class="error-sec">
+        <div class="error-content">
+            <h1>404</h1>
+            <div class="error-message">
+                <h2>Missed the Target.</h2>
+                <p>The page you're looking for has moved or doesn't exist.</p>
+            </div>
+            <a href="index.html" class="cta-btn">Back to Home Base</a>
+        </div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script>
+        gsap.from(".error-content", {opacity: 0, y: 50, duration: 1, ease: "power3.out"});
+    </script>
+</body>
+</html>

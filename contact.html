@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Aim Academy | Get 1:1 IIT JEE Mentorship</title>
+    <meta name="description" content="Ready to start your IIT journey? Contact Aim Academy Kota for elite JEE/NEET mentorship and counselling. Strategy calls available daily.">
+    <meta name="keywords" content="Contact Aim Academy, Kota coaching contact, JEE mentor call, JEE strategy session">
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        :root {
+            --luxury-blue: #1d4ed8;
+            --primary-blue: #1d4ed8;
+            --text-dark: #111827;
+            --text-muted: #4b5563;
+            --premium-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+            --gold-gradient: linear-gradient(135deg, #FFD700, #FFA500);
+            --whatsapp-green: #25D366;
+            --bg-white: #ffffff;
+        }
+
+        body {
+            background-color: #ffffff;
+            overflow-x: hidden;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Hero Section */
+        .contact-hero {
+            padding: 8rem 5% 4rem;
+            text-align: center;
+            background: radial-gradient(circle at top, #f0f7ff 0%, #ffffff 70%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-badge-container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 0.95rem;
+            padding: 0.5rem 1rem;
+            background: white;
+            border-radius: 50px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .trust-badge i {
+            color: var(--primary-blue);
+        }
+
+        /* Quick Contact Cards */
+        .contact-cards-section {
+            padding: 3rem 5%;
+        }
+
+        .cards-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .contact-card {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 24px;
+            text-align: center;
+            box-shadow: var(--premium-shadow);
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
+            border-color: var(--primary-blue);
+        }
+
+        .contact-card.primary {
+            border: 2px solid var(--whatsapp-green);
+            box-shadow: 0 15px 30px rgba(37, 211, 102, 0.15);
+        }
+
+        .contact-card.primary:hover {
+            box-shadow: 0 20px 40px rgba(37, 211, 102, 0.25);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-blue);
+        }
+
+        .contact-card.primary .card-icon {
+            color: var(--whatsapp-green);
+        }
+
+        /* Form Styling */
+        .form-section {
+            padding: 4rem 5%;
+            background: #f8fafc;
+        }
+
+        .form-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 4rem;
+            border-radius: 32px;
+            box-shadow: var(--premium-shadow);
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 4rem;
+        }
+
+        .form-info h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .smart-form {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .input-group {
+            position: relative;
+        }
+
+        .input-group input,
+        .input-group select,
+        .input-group textarea {
+            width: 100%;
+            padding: 1.2rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+            background: #fcfcfc;
+        }
+
+        .input-group label {
+            position: absolute;
+            left: 1.2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94a3b8;
+            pointer-events: none;
+            transition: all 0.3s ease;
+            padding: 0 5px;
+            background: transparent;
+        }
+
+        .input-group input:focus~label,
+        .input-group input:not(:placeholder-shown)~label,
+        .input-group textarea:focus~label,
+        .input-group textarea:not(:placeholder-shown)~label {
+            top: 0;
+            font-size: 0.8rem;
+            color: var(--primary-blue);
+            background: white;
+            font-weight: 600;
+        }
+
+        .input-group select:focus~label,
+        .input-group select:not([value=""])~label {
+            top: 0;
+            font-size: 0.8rem;
+            color: var(--primary-blue);
+            background: white;
+            font-weight: 600;
+        }
+
+        .input-group input:focus,
+        .input-group select:focus,
+        .input-group textarea:focus {
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 4px rgba(29, 78, 216, 0.1);
+            background: white;
+        }
+
+        /* Location Section */
+        .location-section {
+            padding: 4rem 5%;
+        }
+
+        .location-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .map-frame {
+            border-radius: 32px;
+            overflow: hidden;
+            box-shadow: var(--premium-shadow);
+            height: 500px;
+            border: 8px solid white;
+        }
+
+        .office-card {
+            background: #f8fafc;
+            padding: 2rem;
+            border-radius: 20px;
+            margin-bottom: 1.5rem;
+            border-left: 5px solid var(--primary-blue);
+        }
+
+        .consultation-cta {
+            background: #111827;
+            color: white;
+            padding: 4rem 5%;
+            text-align: center;
+            position: relative;
+        }
+
+        .consultation-cta h2 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .urgent-badge {
+            background: #fee2e2;
+            color: #ef4444;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+        }
+
+        /* FAQ Accordion */
+        .faq-accordion {
+            max-width: 900px;
+            margin: 4rem auto;
+        }
+
+        .faq-box {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-header {
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .faq-header i {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-content {
+            padding: 0 2rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        .faq-box.active {
+            border-color: var(--primary-blue);
+            box-shadow: var(--premium-shadow);
+        }
+
+        .faq-box.active .faq-header i {
+            transform: rotate(180deg);
+        }
+
+        .faq-box.active .faq-content {
+            padding-bottom: 2rem;
+            max-height: 200px;
+        }
+
+        /* Floating WhatsApp */
+        .wa-sticky {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 70px;
+            height: 70px;
+            background: var(--whatsapp-green);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .wa-sticky:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        @media (max-width: 768px) {
+
+            .form-container,
+            .location-grid {
+                grid-template-columns: 1fr !important;
+                gap: 2rem !important;
+            }
+
+            .form-container {
+                padding: 2rem 1.5rem;
+            }
+
+            .smart-form div[style*="grid-template-columns: 1fr 1fr"] {
+                grid-template-columns: 1fr !important;
+            }
+
+            .contact-hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Premium Global Elements -->
+    <div class="scroll-progress"></div>
+    <div class="custom-cursor"></div>
+    <div class="cursor-follower"></div>
+    <div class="noise-overlay"></div>
+    <div class="scroll-to-top" style="display:none">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+    <nav class="navbar glass">
+        <a href="index.html" class="nav-brand">
+            <svg viewBox="0 0 320 50" height="60" style="margin-top: 5px;">
+                <g transform="translate(15, 25)">
+                    <path d="M 0 -15 Q 15 0 0 15" fill="none" stroke="#1d4ed8" stroke-width="3"
+                        stroke-linecap="round" />
+                    <line x1="-15" y1="0" x2="15" y2="0" stroke="#1d4ed8" stroke-width="3" stroke-linecap="round" />
+                    <polygon points="15,-5 25,0 15,5" fill="#f59e0b" />
+                </g>
+                <text x="55" y="34" font-family="'Inter', sans-serif" font-weight="900" font-size="28" fill="#1e293b"
+                    letter-spacing="-0.5">AIM ACADEMY</text>
+            </svg>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="process.html">Process</a></li>
+            <li><a href="toppers.html">Our Toppers</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+        <button class="menu-toggle"><i class="fas fa-bars"></i></button>
+        <a href="contact.html" class="cta-btn">Join Now</a>
+    </nav>
+
+    <!-- SECTION 1: HERO CONTACT -->
+    <!-- SECTION 1: HERO CONTACT -->
+    <header class="contact-hero" style="min-height: 80vh; display: flex; flex-direction: column; justify-content: center; align-items: center; background: linear-gradient(135deg, #f0f7ff 0%, #ffffff 50%, #e0f2fe 100%); position: relative;">
+        <!-- Animated Background Elements -->
+        <div style="position: absolute; width: 600px; height: 600px; background: radial-gradient(circle, rgba(29, 78, 216, 0.05), transparent 70%); top: -10%; right: -10%; filter: blur(80px); animation: float 15s infinite alternate;"></div>
+        <div style="position: absolute; width: 500px; height: 500px; background: radial-gradient(circle, rgba(245, 158, 11, 0.05), transparent 70%); bottom: -10%; left: -10%; filter: blur(80px); animation: float 12s infinite alternate-reverse;"></div>
+
+        <div class="hero-content" style="position: relative; z-index: 2;">
+            <div style="display: inline-block; padding: 0.6rem 1.5rem; background: rgba(29, 78, 216, 0.08); border-radius: 50px; color: var(--primary-blue); font-weight: 800; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 2rem; border: 1px solid rgba(29, 78, 216, 0.1);">
+                Strategy Consultation
+            </div>
+            <h1 class="hero-title" style="font-size: clamp(3rem, 8vw, 5rem); font-weight: 950; line-height: 1; letter-spacing: -3px; margin-bottom: 2rem;">
+                Your Rank Starts <br><span style="background: linear-gradient(135deg, var(--primary-blue), #60a5fa); -webkit-background-clip: text; background-clip: text; -webkit-fill-color: transparent;">With a Conversation</span>
+            </h1>
+            <p style="font-size: 1.4rem; color: var(--text-muted); max-width: 800px; margin: 0 auto 4rem; line-height: 1.6;">
+                Don't leave your IIT dreams to chance. Connect with India's most results-driven mentors for a personalized strategic roadmap.
+            </p>
+
+            <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
+                <a href="https://wa.me/919571037150?text=Hi Aim Academy, I want to book a 1:1 strategy call." class="cta-btn"
+                    style="padding: 1.5rem 4rem; background: var(--whatsapp-green); border: none; font-size: 1.1rem; border-radius: 60px; box-shadow: 0 20px 40px rgba(37, 211, 102, 0.2);">
+                    <i class="fab fa-whatsapp" style="margin-right: 12px;"></i> Book Strategy Call
+                </a>
+                <a href="tel:+919571037150" class="btn-secondary" style="padding: 1.5rem 4rem; border-radius: 60px; font-weight: 800; border: 2px solid var(--primary-blue); color: var(--primary-blue) !important; font-size: 1.1rem;">
+                    Immediate Support
+                </a>
+            </div>
+
+            <div class="hero-badge-container" style="margin-top: 5rem; justify-content: center;">
+                <div class="trust-badge" style="background: rgba(255,255,255,0.7); backdrop-filter: blur(10px);"><i class="fas fa-certificate"></i> Certified JoSAA Counselors</div>
+                <div class="trust-badge" style="background: rgba(255,255,255,0.7); backdrop-filter: blur(10px);"><i class="fas fa-shield-alt"></i> Personalized Privacy</div>
+                <div class="trust-badge" style="background: rgba(255,255,255,0.7); backdrop-filter: blur(10px);"><i class="fas fa-clock"></i> 24/7 Priority Support</div>
+            </div>
+        </div>
+    </header>
+
+    <style>
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(50px, 50px) scale(1.1); }
+        }
+    </style>
+
+    <!-- SECTION 2: QUICK CONTACT CARDS -->
+    <section class="contact-cards-section">
+        <div class="cards-grid">
+            <div class="contact-card" onclick="window.location.href='tel:+919571037150'">
+                <div class="card-icon"><i class="fas fa-phone-volume"></i></div>
+                <h3>Call Us</h3>
+                <p style="font-size: 1.4rem; color: var(--primary-blue); font-weight: 800; margin: 0.5rem 0 0.2rem;">+91 9571037150</p>
+                <p style="font-size: 1.4rem; color: var(--primary-blue); font-weight: 800; margin: 0.2rem 0 1rem;">+91 9468937150</p>
+                <p>Available 9 AM - 8 PM</p>
+                <span style="display:inline-block; margin-top: 1.5rem; font-weight: 700; color: var(--text-dark);">Tap
+                    to Call &rarr;</span>
+            </div>
+
+            <div class="contact-card primary" onclick="window.location.href='https://wa.me/919571037150'">
+                <div class="card-icon"><i class="fab fa-whatsapp"></i></div>
+                <h3>WhatsApp</h3>
+                <p style="font-size: 1.4rem; color: var(--whatsapp-green); font-weight: 800; margin: 1rem 0;">Instant
+                    Support</p>
+                <p>Preferred for Quick Doubts</p>
+                <span
+                    style="display:inline-block; margin-top: 1.5rem; font-weight: 700; color: var(--whatsapp-green);">Chat
+                    Now &rarr;</span>
+            </div>
+
+            <div class="contact-card" onclick="window.location.href='mailto:aimacademykota@gmail.com'">
+                <div class="card-icon"><i class="fas fa-envelope-open-text"></i></div>
+                <h3>Email</h3>
+                <p style="font-size: 1.2rem; color: var(--primary-blue); font-weight: 800; margin: 1rem 0;">
+                    aimacademykota@gmail.com</p>
+                <p>For Corporate Queries</p>
+                <span style="display:inline-block; margin-top: 1.5rem; font-weight: 700; color: var(--text-dark);">Send
+                    Email &rarr;</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: LOCATION EXPERIENCE -->
+    <section class="location-section">
+        <div class="location-grid">
+            <div class="map-frame">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3610.123456789!2d75.858!3d25.138!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjVCMDgnMTkuNyJOIDc1QjUxJzI4LjgiRQ!5e0!3m2!1sen!2sin!4v1680000000000!5m2!1sen!2sin"
+                    width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+            <div class="location-info">
+                <h2>Visit Our Centers</h2>
+                <p style="margin-bottom: 2.5rem;">Join the elite preparation hub in Kota and experience personalized
+                    mentorship firsthand.</p>
+
+                <div class="office-card">
+                    <h4><i class="fas fa-building" style="margin-right: 10px;"></i> HEAD OFFICE</h4>
+                    <p>A-13, Road No. 1, Next to Aakash Coaching, IPIA, Kota, Rajasthan</p>
+                    <p style="font-size: 0.9rem; margin-top: 10px;"><i class="far fa-clock"></i> 9:00 AM - 8:00 PM</p>
+                </div>
+
+                <div class="office-card">
+                    <h4><i class="fas fa-map-marked-alt" style="margin-right: 10px;"></i> BRANCH OFFICE</h4>
+                    <p>Royal Imperial, Shop No. GF-9, Near Om Cineplex, Indra Vihar, Kota</p>
+                    <p style="font-size: 0.9rem; margin-top: 10px;"><i class="far fa-clock"></i> 10:00 AM - 7:00 PM</p>
+                </div>
+
+                <a href="https://maps.google.com" target="_blank" class="btn-secondary"
+                    style="display:block; text-align:center; padding: 1.2rem; border-radius: 12px; margin-top: 2rem;">Get
+                    Directions &rarr;</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: SMART CONTACT FORMS -->
+    <section class="form-section">
+        <div style="text-align: center; margin-bottom: 4rem;">
+            <h2>How Can We Help You?</h2>
+            <p>Choose the specific guidance you need for your engineering journey.</p>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; max-width: 1200px; margin: 0 auto;">
+            <!-- Form 1: General Mentorship -->
+            <div class="form-container" style="display: block; grid-template-columns: none; height: 100%;">
+                <div class="form-info" style="margin-bottom: 2rem;">
+                    <h3>JEE/NEET Prep</h3>
+                    <p style="font-size: 0.9rem;">Strategy planning and daily mentorship for preparation.</p>
+                </div>
+                <form class="smart-form" id="smartContactForm">
+                    <div class="input-group">
+                        <input type="text" id="name" placeholder=" " required>
+                        <label>Full Name</label>
+                    </div>
+                    <div class="input-group">
+                        <input type="tel" id="whatsapp_phone" placeholder=" " required>
+                        <label>WhatsApp Number</label>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <select id="student_class" required style="padding: 1.2rem; border-radius: 12px; background: #fcfcfc; border: 1px solid #e2e8f0;">
+                            <option value="" disabled selected>Current Class</option>
+                            <option value="Class 11">Class 11</option>
+                            <option value="Class 12">Class 12</option>
+                            <option value="Dropper">Dropper</option>
+                        </select>
+                        <select id="target_exam" required style="padding: 1.2rem; border-radius: 12px; background: #fcfcfc; border: 1px solid #e2e8f0;">
+                            <option value="" disabled selected>Target Exam</option>
+                            <option value="IIT JEE">IIT JEE</option>
+                            <option value="NEET">NEET</option>
+                        </select>
+                    </div>
+                    <textarea id="msg" placeholder="Tell us about your preparation goal..." rows="4" required style="width:100%; padding:1.2rem; border-radius:12px; border:1px solid #e2e8f0; background:#fcfcfc;"></textarea>
+                    <button type="submit" class="cta-btn" style="padding: 1.2rem; border: none; font-size: 1.1rem;">General Inquiry &rarr;</button>
+                </form>
+            </div>
+
+            <!-- Form 2: Counselling Mentorship -->
+            <div class="form-container" style="display: block; grid-template-columns: none; height: 100%; border-top: 5px solid var(--gold-accent);">
+                <div class="form-info" style="margin-bottom: 2rem;">
+                    <h3 style="color: var(--gold-accent);">Counselling Mentorship</h3>
+                    <p style="font-size: 0.9rem;">Expert help for JoSAA, CSAB, and University selections.</p>
+                </div>
+                <form class="smart-form" id="counsellingForm">
+                    <div class="input-group">
+                        <input type="text" id="c_name" placeholder=" " required>
+                        <label>Full Name</label>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div class="input-group">
+                            <input type="text" id="c_mains" placeholder=" " required>
+                            <label>Mains %ile</label>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" id="c_adv" placeholder=" ">
+                            <label>Adv Rank (if any)</label>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <select id="c_type" required style="width:100%; padding: 1.2rem; border-radius: 12px; background: #fcfcfc; border: 1px solid #e2e8f0;">
+                            <option value="" disabled selected>Select Counselling Process</option>
+                            <option value="JoSAA">JoSAA (IITs/NITs/IIITs)</option>
+                            <option value="CSAB">CSAB (Special Rounds)</option>
+                            <option value="JAC Delhi">JAC Delhi (DTU/NSUT/IGDTUW)</option>
+                            <option value="REAP">REAP (Rajasthan)</option>
+                            <option value="Other">Other State Engineering</option>
+                        </select>
+                    </div>
+                    <textarea id="c_details" placeholder="List your preferred colleges or branches..." rows="4" required style="width:100%; padding:1.2rem; border-radius:12px; border:1px solid #e2e8f0; background:#fcfcfc;"></textarea>
+                    <button type="submit" class="cta-btn" style="padding: 1.2rem; border: none; font-size: 1.1rem; background: var(--gold-accent); color: #000 !important;">Expert Counselling &rarr;</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 5: INSTANT CONSULTATION -->
+    <section class="consultation-cta">
+        <div class="urgent-badge">Limited Slots Available Daily</div>
+        <h2>Book Your 15-Minute Mentorship Call</h2>
+        <p style="font-size: 1.2rem; color: #94a3b8; margin-bottom: 3rem;">Request a callback from our chief mentor to
+            discuss your rank improvement strategy.</p>
+        <button class="cta-btn" onclick="openConsultation()"
+            style="padding: 1.2rem 4rem; border: none; background: #ffffff; color: #111827 !important; font-weight: 800; border-radius: 50px;">Request
+            Callback Now</button>
+    </section>
+
+    <!-- SECTION 7: FAQ -->
+    <section style="padding: 4rem 5%;">
+        <div class="section-head" style="text-align: center;">
+            <h2>Everything You Need to Know</h2>
+            <p>Common questions about our mentorship and coaching model.</p>
+        </div>
+
+        <div class="faq-accordion">
+            <div class="faq-box" onclick="toggleFaq(this)">
+                <div class="faq-header">How does the mentorship model work? <i class="fas fa-chevron-down"></i></div>
+                <div class="faq-content">We assign a dedicated senior mentor who monitors your daily progress, analyzes
+                    your mock test results, and creates a weekly customized study plan based on your speed and accuracy.
+                </div>
+            </div>
+            <div class="faq-box" onclick="toggleFaq(this)">
+                <div class="faq-header">Is both online and offline support available? <i
+                        class="fas fa-chevron-down"></i></div>
+                <div class="faq-content">Yes, we have high-tech classrooms in Kota for offline students, and our elite
+                    virtual mentorship platform ensures that students from anywhere in India get the same level of
+                    intensity and support.</div>
+            </div>
+            <div class="faq-box" onclick="toggleFaq(this)">
+                <div class="faq-header">Can Droppers join middle of the session? <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-content">Yes, we have specialized 'Fast-Track' modules for droppers designed to cover
+                    the high-weightage syllabus quickly and jump directly into intensive testing.</div>
+            </div>
+            <div class="faq-box" onclick="toggleFaq(this)">
+                <div class="faq-header">How do I get the Narayana/Chaitanya test series? <i
+                        class="fas fa-chevron-down"></i></div>
+                <div class="faq-content">We provide full administrative access to premium South-India based test series
+                    as part of our integration package. Contact us for the enrollment steps.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 9: FINAL CTA -->
+    <section class="topper-cta" style="padding: 5rem 5%; text-align: center; border-top: 1px solid #eee;">
+        <h2 style="font-size: 3.5rem;">Your Rank Starts With One Decision</h2>
+        <p style="font-size: 1.4rem; color: var(--text-muted); margin-bottom: 3rem;">Don't leave your preparation to
+            chance. Get elite guidance today.</p>
+        <div style="display: flex; justify-content: center; gap: 2rem;">
+            <a href="https://wa.me/919571037150" class="cta-btn"
+                style="padding: 1.2rem 3rem; background: var(--whatsapp-green); border: none;">Chat on WhatsApp Now</a>
+            <a href="tel:+919571037150" class="btn-secondary" style="padding: 1.2rem 3rem; border-radius: 50px;">Call
+                Counselor</a>
+        </div>
+    </section>
+
+    <!-- WHATSAPP STICKY -->
+    <div class="wa-sticky" onclick="window.location.href='https://wa.me/919571037150'">
+        <i class="fab fa-whatsapp"></i>
+    </div>
+
+    <footer style="background: var(--text-dark); padding: 4rem 5% 2rem; color: white;">
+        <div
+            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; max-width: 1200px; margin: 0 auto; margin-bottom: 3rem;">
+            <div>
+                <h3 style="color: var(--gold-accent); font-size: 1.5rem; margin-bottom: 1.5rem;">Aim Academy</h3>
+                <p style="color: #94a3b8; line-height: 1.6; margin-bottom: 1.5rem;">Elite IIT JEE mentorship crafting
+                    the highest success rate in Kota under expert guidance.</p>
+                <div style="display: flex; gap: 1rem;">
+                    <a href="https://instagram.com/govindrajsingh1908" target="_blank"
+                        style="color: white; font-size: 1.5rem; transition: 0.3s;"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/919571037150" target="_blank"
+                        style="color: white; font-size: 1.5rem; transition: 0.3s;"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div>
+                <h4 style="font-size: 1.2rem; margin-bottom: 1.5rem;">Head Office</h4>
+                <p style="color: #94a3b8;">A-13, Road No. 1, IPIA, Kota</p>
+                <p style="color: #94a3b8; margin-top: 10px;">aimacademykota@gmail.com</p>
+                <p style="color: #94a3b8;">+91 9571037150</p>
+                <p style="color: #94a3b8;">+91 9468937150</p>
+            </div>
+        </div>
+        <div
+            style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto;">
+            <div style="color: #94a3b8; font-size: 0.9rem;">&copy; 2026 Aim Academy.</div>
+            <div style="color: #94a3b8; font-size: 0.9rem;">Design by <a href="https://techol.in"
+                    style="color: var(--primary-blue);">techol.in</a></div>
+        </div>
+    <!-- Core Scripts -->
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // GSAP Revels
+        gsap.from(".hero-title", { opacity: 0, y: 30, duration: 1, delay: 0.3 });
+        gsap.from(".contact-hero p", { opacity: 0, y: 20, duration: 1, delay: 0.5 });
+        gsap.from(".trust-badge", { opacity: 0, y: 20, stagger: 0.2, duration: 0.8, delay: 0.8 });
+
+        // Scroll Reveal for cards
+        gsap.from(".contact-card", {
+            scrollTrigger: { trigger: ".cards-grid", start: "top 80%" },
+            opacity: 0, y: 50, stagger: 0.2, duration: 1, ease: "power3.out"
+        });
+
+        // FAQ Toggle
+        function toggleFaq(el) {
+            const isActive = el.classList.contains('active');
+            document.querySelectorAll('.faq-box').forEach(box => box.classList.remove('active'));
+            if (!isActive) el.classList.add('active');
+        }
+
+        // Form Submission to WhatsApp
+        document.getElementById('smartContactForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('whatsapp_phone').value;
+            const sClass = document.getElementById('student_class').value;
+            const target = document.getElementById('target_exam').value;
+            const level = document.getElementById('current_level').value;
+            const msg = document.getElementById('msg').value;
+
+            const waMsg = `*New Admission Inquiry*%0A%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Class:* ${sClass}%0A*Target:* ${target}%0A*Goal:* ${msg}`;
+            window.open(`https://wa.me/919571037150?text=${waMsg}`, '_blank');
+        });
+
+        document.getElementById('counsellingForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const name = document.getElementById('c_name').value;
+            const mains = document.getElementById('c_mains').value;
+            const adv = document.getElementById('c_adv').value || 'N/A';
+            const type = document.getElementById('c_type').value;
+            const details = document.getElementById('c_details').value;
+
+            const waMsg = `*New Counselling Inquiry*%0A%0A*Name:* ${name}%0A*Mains %ile:* ${mains}%0A*Adv Rank:* ${adv}%0A*Counselling:* ${type}%0A*Details:* ${details}`;
+            window.open(`https://wa.me/919571037150?text=${waMsg}`, '_blank');
+        });
+
+        function openConsultation() {
+            window.location.href = 'https://wa.me/919571037150?text=Hi, I want to book a 1:1 strategy call.';
+        }
+    </script>
+</body>
+
+</html>
