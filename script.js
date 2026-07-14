@@ -165,15 +165,41 @@ function initMagneticButtons() {
 function splitText() {
     const titles = document.querySelectorAll('.hero-title, .section-head h2');
     titles.forEach(title => {
-        const text = title.innerText;
+        // Walk the original child nodes (instead of flattening via innerText)
+        // so that any hand-placed <span> accent word keeps its highlight
+        // treatment after being re-wrapped into per-word reveal spans.
+        const fragments = [];
+        title.childNodes.forEach(node => {
+            if (node.nodeType === Node.TEXT_NODE) {
+                (node.textContent.match(/\S+/g) || []).forEach(w => {
+                    fragments.push({ text: w, isAccent: false, styleAttr: '' });
+                });
+            } else if (node.nodeType === Node.ELEMENT_NODE && node.tagName !== 'BR') {
+                const isAccent = node.tagName === 'SPAN';
+                const styleAttr = node.getAttribute('style') || '';
+                (node.textContent.match(/\S+/g) || []).forEach(w => {
+                    fragments.push({ text: w, isAccent, styleAttr });
+                });
+            }
+        });
+
         title.innerHTML = '';
-        text.split(' ').forEach(word => {
-            const span = document.createElement('span');
-            span.className = 'word';
-            span.style.display = 'inline-block';
-            span.style.overflow = 'hidden';
-            span.innerHTML = `<span style="display:inline-block">${word}</span>&nbsp;`;
-            title.appendChild(span);
+        fragments.forEach(({ text, isAccent, styleAttr }) => {
+            const word = document.createElement('span');
+            word.className = isAccent ? 'word word--accent' : 'word';
+            word.style.display = 'inline-block';
+            word.style.overflow = 'hidden';
+
+            const inner = document.createElement('span');
+            inner.style.display = 'inline-block';
+            if (isAccent && styleAttr) {
+                inner.setAttribute('style', `display:inline-block;${styleAttr}`);
+            }
+            inner.textContent = text;
+
+            word.appendChild(inner);
+            word.appendChild(document.createTextNode('\u00A0'));
+            title.appendChild(word);
         });
     });
 }
